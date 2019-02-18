@@ -1,0 +1,5 @@
+.accordion .card:first-of-type {
+  border-bottom-width: 1px !important;
+  border-bottom-style: solid;
+  border-bottom-color: #dfdfdf;
+}

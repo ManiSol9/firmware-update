@@ -1,0 +1,26 @@
+.status-container {
+  display: flex;
+  margin-right: 12px;
+}
+.status-details-container {
+  width: 380px;
+}
+.upload-text {
+  font-size: 18px;
+}
+.firm-card {
+  margin: auto;
+}
+
+.update-row {
+  border-style: solid;
+  border-width: 1px;
+  padding: 14px 0px;
+  margin: 0px;
+}
+.toggle-card {
+  margin: 0px !important;
+}
+.toogle-footer {
+  padding: 5px
+}
