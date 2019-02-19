@@ -54,7 +54,7 @@ export default class Main extends Component {
                   >
                     <span className="fa fa-spinner" />
                     <label>
-                      <b>&nbsp;&nbsp;Firmware status: </b>
+                      <b>&nbsp;&nbsp;Firmware upload: </b>
                     </label>
                     <i className="fa fa-angle-down pull-right" />
                   </a>
@@ -98,9 +98,15 @@ export default class Main extends Component {
               >
                 <div className="card-body">
                   <div className="row">
+                  {
+                    
                     <div className="col-6">
-                      <Log />
+                      
+                        <Log />
+                      
                     </div>
+                    
+                  }
                     <div className="col-6">
                       <Reboot />
                     </div>

@@ -32,8 +32,8 @@ export default class UploadTwin extends Component {
         },
         data: {
           software_version: softwareVersion,
-          url: url,
-          reboot: reboot
+          url: url
+          //reboot: reboot
         }
       })
         .then(response => {
@@ -90,14 +90,18 @@ export default class UploadTwin extends Component {
               onChange={this.handleInput}
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="rebootType">Reboot</label>
-            <select className="form-control" id="rebootType" value={reboot}
-              name="reboot" onChange={this.handleInput}>
-              <option>True</option>
-              <option>False</option>
-            </select>
-          </div>
+          {
+            /*
+              <div className="form-group">
+                <label htmlFor="rebootType">Reboot</label>
+                <select className="form-control" id="rebootType" value={reboot}
+                  name="reboot" onChange={this.handleInput}>
+                  <option>True</option>
+                  <option>False</option>
+                </select>
+              </div>
+              */
+          }
           <button type="submit" className="cust-btn">
             {updateTwinLoading?'Updating Firmware..':'Update firmware'}
           </button>

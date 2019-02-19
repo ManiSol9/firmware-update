@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./log.css";
-const { REACT_APP_AZURE_SERVER, REACT_APP_LOG } = process.env;
+const { REACT_APP_VM_SERVER, REACT_APP_UPDATE_REBOOT } = process.env;
 
 export default class UploadTwin extends Component {
   constructor(props) {
@@ -15,13 +15,10 @@ export default class UploadTwin extends Component {
   logMessage = e => {
     e.preventDefault();
     const { deviceID, message } = this.state;
-    if (deviceID === "" || message === "") {
-      alert("Please enter all the fields");
-    } else {
       this.setState({ logging: true });
       axios({
         method: "post",
-        url: REACT_APP_AZURE_SERVER + REACT_APP_LOG ,
+        url: REACT_APP_VM_SERVER + 'updatereboot',
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
@@ -29,21 +26,19 @@ export default class UploadTwin extends Component {
           "Access-Control-Allow-Methods": "POST"
         },
         data: {
-          DeviceID: deviceID,
-          Message: message
+          "reboot": "true"
         }
       })
         .then(response => {
           console.log(response);
-          alert('Log registered successfully')
+          alert('Reboot successfully')
           this.setState({ logging: false, deviceID:'', message:'' });
         })
         .catch(err => {
           console.log(err);
-          alert('Error in Logging.')
+          alert('Error in Reboot.')
           this.setState({ logging: false });
         });
-    }
   };
   handleInput = e => {
     const { name, value } = e.target;
@@ -58,6 +53,8 @@ export default class UploadTwin extends Component {
     return (
       <div className="box-it">
         <form onSubmit={this.logMessage}>
+          {
+            /*
           <div className="form-group">
             <input
               type="text"
@@ -80,8 +77,10 @@ export default class UploadTwin extends Component {
               onChange={this.handleInput}
             />
           </div>
+          */
+          }
           <button type="submit" className="cust-btn">
-            {logging?'Logging..':'Log'}
+            {logging?'Rebooting..':'Reboot'}
           </button>
         </form>
       </div>

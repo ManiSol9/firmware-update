@@ -53,7 +53,10 @@ export default class FileUpload extends Component {
       formData.append("firmare", this.state.selectedFile);
       const config = {
         headers: {
-          "content-type": "multipart/form-data"
+          "content-type": "multipart/form-data",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers":"Authorization, Content-Type",
+          "Access-Control-Allow-Methods": "POST"
         }
       };
       axios
