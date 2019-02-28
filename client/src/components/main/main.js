@@ -3,6 +3,7 @@ import Reboot from "../reboot/reboot";
 import Log from '../log/log';
 import Update from "../update/update";
 import FileUpload from "../fileupload/fileupload";
+import SetLog from "../setlog/setlog";
 
 export default class Main extends Component {
   render() {
@@ -103,12 +104,16 @@ export default class Main extends Component {
                     <div className="col-6">
                       
                         <Log />
+                        <Reboot />
+
                       
                     </div>
                     
                   }
                     <div className="col-6">
-                      <Reboot />
+
+                      <SetLog />
+
                     </div>
                   </div>
                 </div>
