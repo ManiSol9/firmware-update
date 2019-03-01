@@ -107,7 +107,7 @@ export default class SetLog extends Component {
                                                             type="software-version"
                                                             className="form-control"
                                                             id="software"
-                                                            value={this.state.settime || ''}
+                                                            value={this.state.settime}
                                                             name="settime"
                                                             aria-describedby="softwareHelp"
                                                             placeholder="Duration in min"
