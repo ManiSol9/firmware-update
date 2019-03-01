@@ -104,7 +104,7 @@ export default class SetLog extends Component {
                                                     <div className="form-group">
                                                         <label htmlFor="exampleInputEmail1">Loging Time Intervel (in Min)</label>
                                                         <input
-                                                            type="software-version"
+                                                            type="number"
                                                             className="form-control"
                                                             id="software"
                                                             value={this.state.settime}
