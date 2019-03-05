@@ -31,7 +31,7 @@ export default class Reboot extends Component {
     return (
       <div index={key}>
         <p><b>Reboot status:</b>&nbsp;<span>{status.status?status.status:'--'}</span></p><br/>
-        <p><b>Reeboot type:</b>&nbsp;<span>{status.rebootType}</span></p>
+        <p><b>Reboot type:</b>&nbsp;<span>{status.rebootType}</span></p>
       </div>
     )
   }
