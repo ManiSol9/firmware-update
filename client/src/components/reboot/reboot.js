@@ -44,7 +44,7 @@ export default class Reboot extends Component {
         ) : (
           <div>
             <p><b>Reboot status:</b>&nbsp;<span>{'--'}</span></p><br/>
-            <p><b>Reeboot type:</b>&nbsp;<span>{'--'}</span></p>
+            <p><b>Reboot type:</b>&nbsp;<span>{'--'}</span></p>
           </div>
         )}
         <button type="button" className="fluid-btn" onClick={this.getStatus}>

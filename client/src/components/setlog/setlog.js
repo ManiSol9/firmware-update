@@ -102,7 +102,7 @@ export default class SetLog extends Component {
                                             <div className="card-body">
                                                 <form onSubmit={this.updateSet}>
                                                     <div className="form-group">
-                                                        <label htmlFor="exampleInputEmail1">Loging Time Intervel (in Min)</label>
+                                                        <label htmlFor="exampleInputEmail1">Logging Time Interval (in Min)</label>
                                                         <input
                                                             type="number"
                                                             className="form-control"
