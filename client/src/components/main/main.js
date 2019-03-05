@@ -24,7 +24,7 @@ export default class Main extends Component {
                   >
                     <span className="fa fa-tasks" />
                     <label>
-                      <b>&nbsp;&nbsp;Aviliable Firmwares: </b>
+                      <b>&nbsp;&nbsp;Available Firmwares: </b>
                     </label>
                     <i className="fa fa-angle-down pull-right" />
                   </a>
