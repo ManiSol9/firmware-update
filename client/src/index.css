@@ -14,3 +14,7 @@
   width: 100%;
   cursor: pointer;
 }
+
+.margin-btn{
+  margin: 8px 0px;
+}
