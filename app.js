@@ -22,9 +22,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get('*', (req, res)=>{
-  res.send('<h1>Not found!!!</h1>')
-})
 app.listen(config.port, ()=>{
   console.log(`Server listening on the port ${config.port}`)
 })
