@@ -6,5 +6,5 @@ module.exports = {
   connectionStr:
     "DefaultEndpointsProtocol=https;AccountName=wrdm2chetanpackage;AccountKey=RzsWh+wBvoFHs0NDs7Vbonjx9WAh/aQXvCZPOd0HSPhTfDksGcDMaiaX97LWRbRr0Dr9wtTsoHN0b92H+6LOYQ==;EndpointSuffix=core.windows.net",
   containerName:'firmware',
-  port: process.env.PORT || 3001
+  port: process.env.PORT || 3003
 };
