@@ -57,7 +57,7 @@ export default class RunCommand extends Component {
             className="form-control cust-text-area"
             id="commandToRun"
             rows="5"
-            placeholder="Type an command to execute"
+            placeholder="Type a command to execute"
             value={command}
             onChange={e=>this.setState({command:e.target.value})}
           />
@@ -70,7 +70,7 @@ export default class RunCommand extends Component {
             className="form-control cust-text-area"
             id="response"
             rows="5"
-            placeholder="Execute an command.."
+            placeholder="Command output"
             readOnly
             value={response}
           />
