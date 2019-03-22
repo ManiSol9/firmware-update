@@ -26,7 +26,9 @@ export default class RunCommand extends Component {
       "lshw",
       "lscpu",
       "fdisk",
-      "netstat"
+      "netstat",
+      "systemctl start",
+      "systemctl stop"
     ],
     getIdLoading: false,
     getCommandLoading: false
