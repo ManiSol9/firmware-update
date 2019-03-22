@@ -143,7 +143,7 @@ export default class RunCommand extends Component {
             className="form-control cust-text-area"
             id="response"
             rows="4"
-            placeholder="Command output"
+            placeholder="Command output or Execution status"
             readOnly
             value={response}
           />
