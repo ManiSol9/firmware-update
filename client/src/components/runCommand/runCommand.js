@@ -5,8 +5,9 @@ import $ from "jquery";
 const {
   REACT_APP_VM_SERVER,
   REACT_APP_RUN_COMMAND,
-  REACT_APP_RUN_DIAG,
-  REACT_APP_GET_COMMAND
+  REACT_APP_GET_ID,
+  REACT_APP_GET_COMMAND,
+  REACT_APP_AZURE_SERVER
 } = process.env;
 
 export default class RunCommand extends Component {
@@ -26,7 +27,9 @@ export default class RunCommand extends Component {
       "lscpu",
       "fdisk",
       "netstat"
-    ]
+    ],
+    getIdLoading: false,
+    getCommandLoading: false
   };
   execCmd = e => {
     e.preventDefault();
@@ -53,7 +56,7 @@ export default class RunCommand extends Component {
       })
         .then(response => {
           console.log(response);
-          this.setState({ runnigCommand: false, response: response.data });
+          this.setState({ runnigCommand: false, response: `Command output: ${JSON.stringify(response.data, null, 4)}` });
         })
         .catch(err => {
           alert("Error executing command");
@@ -63,6 +66,38 @@ export default class RunCommand extends Component {
     }
   };
 
+  getId = (e) => {
+    e.preventDefault();
+    this.setState({ getIdLoading: true });
+    axios({
+      method: "get",
+      url: REACT_APP_VM_SERVER + REACT_APP_GET_ID
+    })
+      .then(response => {
+        console.log(response);
+        this.getCommand(response.data.Id);
+        this.setState({ getIdLoading: false });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ getIdLoading: false });
+      });
+  };
+  getCommand = id => {
+    this.setState({ getCommandLoading: true });
+    axios({
+      method: "get",
+      url: REACT_APP_AZURE_SERVER + REACT_APP_GET_COMMAND + id
+    })
+      .then(response => {
+        console.log(response);
+        this.setState({ getCommandLoading: false, response: `Execution status: ${JSON.stringify(response.data, null, 4)}` });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ getCommandLoading: false });
+      });
+  };
   copyToClipboard = element => {
     var $temp = $("<input>");
     $("body").append($temp);
@@ -71,10 +106,17 @@ export default class RunCommand extends Component {
     $temp.remove();
   };
   render() {
-    const { command, runnigCommand, response, availableCmd } = this.state;
+    const {
+      command,
+      runnigCommand,
+      response,
+      availableCmd,
+      getIdLoading,
+      getCommandLoading
+    } = this.state;
     return (
       <div className="row cmd-container">
-        <form onSubmit={this.execCmd} className="col-8">
+        <form className="col-8">
           <label htmlFor="commandToRun">
             <b>Command: </b>
           </label>
@@ -85,8 +127,13 @@ export default class RunCommand extends Component {
             value={command}
             onChange={e => this.setState({ command: e.target.value })}
           />
-          <button className="cust-btn margin-btn" type="submit">
-            {runnigCommand ? "Command executing.." : "Run command"}
+          <button className="cust-btn margin-btn" onClick={this.execCmd} >
+            {runnigCommand ? "Command running.." : "Run command"}
+          </button>
+          <button className="cust-btn margin-btn" onClick={this.getId}>
+            {getIdLoading || getCommandLoading
+              ? "Checking.."
+              : "Check execution"}
           </button>
           <br />
           <label htmlFor="response">
