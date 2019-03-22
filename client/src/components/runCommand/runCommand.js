@@ -30,15 +30,19 @@ export default class RunCommand extends Component {
       "systemctl start",
       "systemctl stop"
     ],
+    dynamicCmd: ["systemctl start", "systemctl stop"],
     getIdLoading: false,
     getCommandLoading: false
   };
   execCmd = e => {
     e.preventDefault();
-    const { command, availableCmd } = this.state;
+    const { command, availableCmd, dynamicCmd } = this.state;
     if (command === "") {
       alert("Please enter command");
-    } else if (availableCmd.filter(cmd => cmd == command.trim()).length == 0) {
+    } else if (
+      dynamicCmd.filter(cmd => command.startsWith(cmd)).length === 0 &&
+      availableCmd.filter(cmd => cmd == command.trim()).length === 0
+    ) {
       alert("Please provide only available commands");
     } else {
       this.setState({ runnigCommand: true });
@@ -58,7 +62,14 @@ export default class RunCommand extends Component {
       })
         .then(response => {
           console.log(response);
-          this.setState({ runnigCommand: false, response: `Command output: ${JSON.stringify(response.data, null, 4)}` });
+          this.setState({
+            runnigCommand: false,
+            response: `Command output: ${JSON.stringify(
+              response.data,
+              null,
+              4
+            )}`
+          });
         })
         .catch(err => {
           alert("Error executing command");
@@ -68,7 +79,7 @@ export default class RunCommand extends Component {
     }
   };
 
-  getId = (e) => {
+  getId = e => {
     e.preventDefault();
     this.setState({ getIdLoading: true });
     axios({
@@ -93,7 +104,14 @@ export default class RunCommand extends Component {
     })
       .then(response => {
         console.log(response);
-        this.setState({ getCommandLoading: false, response: `Execution status: ${JSON.stringify(response.data, null, 4)}` });
+        this.setState({
+          getCommandLoading: false,
+          response: `Execution status: ${JSON.stringify(
+            response.data.Response,
+            null,
+            4
+          )}`
+        });
       })
       .catch(err => {
         console.log(err);
@@ -105,6 +123,7 @@ export default class RunCommand extends Component {
     $("body").append($temp);
     $temp.val($(element).text()).select();
     document.execCommand("copy");
+    console.log('element: ',element,'copied: ', $(element).text())
     $temp.remove();
   };
   render() {
@@ -129,7 +148,7 @@ export default class RunCommand extends Component {
             value={command}
             onChange={e => this.setState({ command: e.target.value })}
           />
-          <button className="cust-btn margin-btn" onClick={this.execCmd} >
+          <button className="cust-btn margin-btn" onClick={this.execCmd}>
             {runnigCommand ? "Command running.." : "Run command"}
           </button>
           <button className="cust-btn margin-btn" onClick={this.getId}>
@@ -155,7 +174,7 @@ export default class RunCommand extends Component {
           <ul className="cmd-ul">
             {availableCmd.map((cmd, index) => (
               <li key={index}>
-                <span id={index + cmd} style={{ margin: "0px" }}>
+                <span id={index} style={{ margin: "0px" }}>
                   {cmd}
                 </span>
                 <img
@@ -166,7 +185,7 @@ export default class RunCommand extends Component {
                   data-toggle="tooltip"
                   data-placement="right"
                   title="Click to copy"
-                  onClick={() => this.copyToClipboard(`#${index + cmd}`)}
+                  onClick={() => this.copyToClipboard(`#${index}`)}
                 />
               </li>
             ))}
