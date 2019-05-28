@@ -39,8 +39,7 @@ export default class RunCommand extends Component {
     const { command, availableCmd, dynamicCmd } = this.state;
     if (command === "") {
       alert("Please enter command");
-    
-    
+  
     /* else if (
       dynamicCmd.filter(cmd => command.startsWith(cmd)).length === 0 &&
       availableCmd.filter(cmd => cmd == command.trim()).length === 0
