@@ -39,11 +39,15 @@ export default class RunCommand extends Component {
     const { command, availableCmd, dynamicCmd } = this.state;
     if (command === "") {
       alert("Please enter command");
-    } else if (
+    
+    
+    /* else if (
       dynamicCmd.filter(cmd => command.startsWith(cmd)).length === 0 &&
       availableCmd.filter(cmd => cmd == command.trim()).length === 0
     ) {
       alert("Please provide only available commands");
+    } */ 
+    
     } else {
       this.setState({ runnigCommand: true });
       axios({
@@ -169,6 +173,10 @@ export default class RunCommand extends Component {
             value={response}
           />
         </form>
+        {
+        
+        /*
+        
         <div className="avail-cmds col-4">
           <h6>Available commands</h6>
           <ul className="cmd-ul">
@@ -191,6 +199,10 @@ export default class RunCommand extends Component {
             ))}
           </ul>
         </div>
+
+        */
+
+        }
       </div>
     );
   }
